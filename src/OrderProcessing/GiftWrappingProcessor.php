@@ -31,6 +31,8 @@ class GiftWrappingProcessor implements OrderProcessorInterface
             return;
         }
 
+        $order->removeAdjustments('gift_wrapping');
+
         $adjustment = $this->adjustmentFactory->createNew();
         $adjustment->setAmount(1000);
         $adjustment->setNeutral(false);

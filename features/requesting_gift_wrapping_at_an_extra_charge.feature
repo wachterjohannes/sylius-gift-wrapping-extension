@@ -15,3 +15,8 @@ Feature: Requesting gift wrapping at an extra charge
 
     Scenario: No extra charge is added without the gift wrapping
         Then my cart total should be "$100.00"
+
+    Scenario: No duplicate charges are added when modifying the cart
+        When I request my order to be gift wrapped
+        But I change "PHP T-Shirt" quantity to 2
+        Then my cart total should be "$210.00"

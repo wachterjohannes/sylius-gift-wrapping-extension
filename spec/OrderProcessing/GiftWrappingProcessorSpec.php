@@ -36,6 +36,7 @@ class GiftWrappingProcessorSpec extends ObjectBehavior
         $order->isGiftWrapping()->willReturn(true);
         $adjustmentFactory->createNew()->willReturn($adjustment);
 
+        $order->removeAdjustments('gift_wrapping')->shouldBeCalled();
         $adjustment->setAmount(1000)->shouldBeCalled();
         $adjustment->setNeutral(false)->shouldBeCalled();
         $adjustment->setType('gift_wrapping')->shouldBeCalled();
@@ -61,5 +62,22 @@ class GiftWrappingProcessorSpec extends ObjectBehavior
         $this
             ->shouldThrow(\InvalidArgumentException::class)
             ->during('process', [$coreOrder]);
+    }
+
+    function it_dont_adds_10_usd_adjustment_when_order_already_has_this_adjustment(
+        Order $order,
+        FactoryInterface $adjustmentFactory,
+        AdjustmentInterface $adjustment
+    ) {
+        $order->isGiftWrapping()->willReturn(true);
+        $adjustmentFactory->createNew()->willReturn($adjustment);
+
+        $order->removeAdjustments('gift_wrapping')->shouldBeCalled();
+        $adjustment->setAmount(1000)->shouldBeCalled();
+        $adjustment->setNeutral(false)->shouldBeCalled();
+        $adjustment->setType('gift_wrapping')->shouldBeCalled();
+        $order->addAdjustment($adjustment)->shouldBeCalled();
+
+        $this->process($order);
     }
 }
