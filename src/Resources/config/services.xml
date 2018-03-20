@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="acme_sylius_example_plugin.form.cart_extension"
+                 class="Acme\SyliusExamplePlugin\Form\OrderTypeExtension">
+            <tag name="form.type_extension" extended_type="Sylius\Bundle\OrderBundle\Form\Type\CartType"/>
+        </service>
+    </services>
+</container>

@@ -11,7 +11,7 @@ class Order extends \Sylius\Component\Core\Model\Order
      */
     private $giftWrapping;
 
-    public function isGiftWrapping(): bool
+    public function isGiftWrapping(): ?bool
     {
         return $this->giftWrapping;
     }
