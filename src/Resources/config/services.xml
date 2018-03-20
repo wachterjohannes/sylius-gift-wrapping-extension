@@ -6,5 +6,11 @@
                  class="Acme\SyliusExamplePlugin\Form\OrderTypeExtension">
             <tag name="form.type_extension" extended_type="Sylius\Bundle\OrderBundle\Form\Type\CartType"/>
         </service>
+
+        <service id="acme_sylius_example_plugin.order_processing.gift_wrapping"
+                 class="Acme\SyliusExamplePlugin\OrderProcessing\GiftWrappingProcessor">
+            <argument type="service" id="sylius.custom_factory.adjustment"/>
+            <tag name="sylius.order_processor" priority="15"/>
+        </service>
     </services>
 </container>
