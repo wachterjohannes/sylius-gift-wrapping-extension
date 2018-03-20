@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="sylius.behat.page.shop.cart_summary.class">Tests\Acme\SyliusExamplePlugin\Behat\Page\Shop\SummaryPage</parameter>
+    </parameters>
+
     <services>
         <!-- Put your Behat services here -->
 
         <service id="acme_sylius_example.context.ui.shop.welcome" class="Tests\Acme\SyliusExamplePlugin\Behat\Context\Ui\Shop\WelcomeContext">
             <argument type="service" id="acme_sylius_example.page.shop.static_welcome" />
             <argument type="service" id="acme_sylius_example.page.shop.dynamic_welcome" />
+            <tag name="fob.context_service" />
+        </service>
+
+        <service id="acme_sylius_example.context.ui.shop.gift_wrapping" class="Tests\Acme\SyliusExamplePlugin\Behat\Context\Ui\Shop\GiftWrappingContext">
+            <argument type="service" id="sylius.behat.page.shop.cart_summary" />
             <tag name="fob.context_service" />
         </service>
 
