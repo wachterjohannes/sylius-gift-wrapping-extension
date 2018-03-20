@@ -1,3 +1,11 @@
-{{ form_row(form.giftWrapping, {attr: {class: 'gift-wrapping-checkbox'}}) }}
+{% if not cart.giftWrapping %}
+    {{ form_row(form.giftWrapping, {attr: {class: 'gift-wrapping-checkbox'}}) }}
+{% else %}
+    <a href="{{ path('acme_sylius_example_cancel_gift_wrapping') }}" class="ui red button gift-wrapping-checkbox">
+        <i class="ui icon remove">Cancel gift wrapping</i>
+    </a>
+{% endif %}
 
-<button type="submit" class="ui icon labeled large button" id="sylius-cart-update"><i class="save icon"></i> {{ 'sylius.ui.update_cart'|trans }}</button>
+<button type="submit" class="ui icon labeled large button" id="sylius-cart-update">
+    <i class="save icon"></i> {{ 'sylius.ui.update_cart'|trans }}
+</button>

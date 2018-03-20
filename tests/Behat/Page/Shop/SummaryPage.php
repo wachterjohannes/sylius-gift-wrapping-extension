@@ -6,7 +6,12 @@ class SummaryPage extends \Sylius\Behat\Page\Shop\Cart\SummaryPage
 {
     public function requestGiftWrapping()
     {
-        $this->getElement('gift_wrapping')->check();
+        $this->getElement('request_gift_wrapping')->check();
+    }
+
+    public function cancelGiftWrapping()
+    {
+        $this->getElement('cancel_gift_wrapping')->click();
     }
 
     protected function getDefinedElements()
@@ -14,7 +19,8 @@ class SummaryPage extends \Sylius\Behat\Page\Shop\Cart\SummaryPage
         return array_merge(
             parent::getDefinedElements(),
             [
-                'gift_wrapping' => '.gift-wrapping-checkbox',
+                'request_gift_wrapping' => '.gift-wrapping-checkbox',
+                'cancel_gift_wrapping' => '.gift-wrapping-checkbox',
             ]
         );
     }

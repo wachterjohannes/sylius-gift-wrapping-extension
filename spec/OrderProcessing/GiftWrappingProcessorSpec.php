@@ -51,6 +51,7 @@ class GiftWrappingProcessorSpec extends ObjectBehavior
     ) {
         $order->isGiftWrapping()->willReturn(false);
 
+        $order->removeAdjustments('gift_wrapping')->shouldBeCalled();
         $order->addAdjustment(Argument::any())->shouldNotBeCalled();
 
         $this->process($order);
@@ -77,6 +78,16 @@ class GiftWrappingProcessorSpec extends ObjectBehavior
         $adjustment->setNeutral(false)->shouldBeCalled();
         $adjustment->setType('gift_wrapping')->shouldBeCalled();
         $order->addAdjustment($adjustment)->shouldBeCalled();
+
+        $this->process($order);
+    }
+
+    function it_removes_adjustment_when_adjustment_is_canceled(
+        Order $order
+    ) {
+        $order->isGiftWrapping()->willReturn(false);
+
+        $order->removeAdjustments('gift_wrapping')->shouldBeCalled();
 
         $this->process($order);
     }

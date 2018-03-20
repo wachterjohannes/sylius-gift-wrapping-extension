@@ -20,3 +20,8 @@ Feature: Requesting gift wrapping at an extra charge
         When I request my order to be gift wrapped
         But I change "PHP T-Shirt" quantity to 2
         Then my cart total should be "$210.00"
+
+    Scenario: Canceling gift wrapping removes any charges
+        When I request my order to be gift wrapped
+        But then I change my mind and cancel it
+        Then my cart total should be "$100.00"

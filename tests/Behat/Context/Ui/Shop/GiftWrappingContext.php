@@ -27,4 +27,12 @@ class GiftWrappingContext implements Context
         $this->summaryPage->requestGiftWrapping();
         $this->summaryPage->updateCart();
     }
+
+    /**
+     * @When then I change my mind and cancel it
+     */
+    public function thenIChangeMyMindAndCancelIt()
+    {
+        $this->summaryPage->cancelGiftWrapping();
+    }
 }

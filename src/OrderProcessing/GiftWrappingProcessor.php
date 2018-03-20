@@ -27,11 +27,11 @@ class GiftWrappingProcessor implements OrderProcessorInterface
     {
         Assert::isInstanceOf($order, Order::class);
 
+        $order->removeAdjustments('gift_wrapping');
         if (!$order->isGiftWrapping()) {
             return;
         }
 
-        $order->removeAdjustments('gift_wrapping');
 
         $adjustment = $this->adjustmentFactory->createNew();
         $adjustment->setAmount(1000);

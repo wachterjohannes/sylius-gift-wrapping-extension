@@ -9,3 +9,8 @@ acme_sylius_example_dynamic_welcome:
     defaults:
         _controller: AcmeSyliusExamplePlugin:Greeting:dynamicallyGreet
         name: ~
+
+acme_sylius_example_cancel_gift_wrapping:
+    path: /cart/gift-wrapping/cancel
+    defaults:
+        _controller: AcmeSyliusExamplePlugin:GiftWrapping:cancel
